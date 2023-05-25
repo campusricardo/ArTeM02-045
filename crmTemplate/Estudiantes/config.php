@@ -27,7 +27,7 @@ class Config{
         $this->dbCnx = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
     }
 
-//xd
+    //xd
 public function setId($id)
 {
     $this->id = $id;
@@ -145,9 +145,28 @@ public function insertData(){
             return $stm-> fetchAll();
             echo "<script> alert('Registro eliminado'); document.location='estudiantes.php';</script>";
         } catch(Exception $e) {
-
+            return $e-> getMessage();
         }
     }
+    public function selectOne(){
+        try {
+            $stm = $this->dbCnx->prepare("SELECT * FROM campers WHERE id= ?");
+            $stm -> execute([$this->id]);
+            return $stm ->fetchAll();
+        } catch(Exception $e) {
+            return $e-> getMessage();
+        }
 
+    }
+
+    public function update()
+    {
+        try {
+            $stm = $this-> dbCnx -> prepare("UPDATE campers SET nombres = ?, direccion = ?, logros = ? WHERE id = ?");
+            $stm -> execute([$this->nombres, $this->direccion, $this->logros, $this->id]);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }
 ?>
