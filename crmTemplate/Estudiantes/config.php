@@ -15,7 +15,7 @@ class Config{
     protected $dbCnx;
 
     public function __construct($id = 0, $nombres = "", $direccion = "", $logros = "", $ser = "", $ingles = "", $skills = "", $review = "", $especialidad = ""){
-        $this->id = $id;
+        $this->d = $id;
         $this->nombres = $nombres;
         $this->direccion = $direccion;
         $this->logros = $logros;
@@ -28,9 +28,9 @@ class Config{
     }
 
     //xd
-public function setId($id)
+public function setId($d)
 {
-    $this->id = $id;
+    $this->d = $d;
 }
 
 public function getId()
