@@ -1,7 +1,11 @@
 <?php 
-require_once("db.php");
+require_once("../Config/db.php");
+require_once("../Config/conectar.php");
 
-class Config{
+ini_set('display_errors', 1); 
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+class Estudiantes extends Conectar {
 
     private $id;
     private $nombres;
@@ -12,10 +16,9 @@ class Config{
     private $skills;
     private $review;
     private $especialidad;
-    protected $dbCnx;
 
     public function __construct($id = 0, $nombres = "", $direccion = "", $logros = "", $ser = "", $ingles = "", $skills = "", $review = "", $especialidad = ""){
-        $this->d = $id;
+        $this->id = $id;
         $this->nombres = $nombres;
         $this->direccion = $direccion;
         $this->logros = $logros;
@@ -24,13 +27,14 @@ class Config{
         $this->skills = $skills;
         $this->review = $review;
         $this->especialidad = $especialidad;
-        $this->dbCnx = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+        parent::__construct($dbCnx);
+
     }
 
     //xd
-public function setId($d)
+public function setId($id)
 {
-    $this->d = $d;
+    $this->id = $id;
 }
 
 public function getId()

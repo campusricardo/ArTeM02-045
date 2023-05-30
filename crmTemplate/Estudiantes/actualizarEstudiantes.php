@@ -1,6 +1,6 @@
 <?php 
-require_once("config.php");
-$data = new Config();
+require_once("Estudiante.php");
+$data = new Estudiantes();
 
 $id = $_GET['id'];
 $data-> setId($id);

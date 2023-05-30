@@ -1,8 +1,11 @@
 <?php 
 
-require_once("config.php");
+require_once("Estudiante.php");
 
-$record = new Config();
+ini_set('display_errors', 1); 
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+$record = new Estudiantes();
 
 if (isset($_GET['id']) && isset($_GET['req']))
 {
@@ -10,7 +13,7 @@ if (isset($_GET['id']) && isset($_GET['req']))
     {
         $record-> setId($_GET["id"]);
         $record-> delete();
-        echo "<script> alert('Dato borrado satisfactoriamente'); document.location='estudiantes.php'; </script>";
+        
     }
 }
 
